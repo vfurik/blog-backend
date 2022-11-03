@@ -1,11 +1,10 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { PostDto } from './dto/post.dto';
 import { PostService } from './post.service';
 
-@Controller('post')
+@Controller('posts')
 export class PostController {
-  constructor(private readonly configService: ConfigService, private readonly postService: PostService) {}
+  constructor(private readonly postService: PostService) {}
 
   @Get()
   async findAll() {
@@ -15,10 +14,5 @@ export class PostController {
   @Post()
   async create(@Body() dto: PostDto) {
     return this.postService.create(dto);
-  }
-
-  @Post('truncate')
-  async truncate() {
-    this.postService.cleanUpDb();
   }
 }
