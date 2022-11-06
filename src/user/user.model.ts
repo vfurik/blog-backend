@@ -3,8 +3,12 @@ import { Post } from '../post/post.model';
 import { Role } from './role/role.enum';
 import { Exclude } from 'class-transformer';
 
+interface UserCreationAttrs {
+  email: string;
+  password: string;
+}
 @Table({ tableName: 'users' })
-export class User extends Model<User> {
+export class User extends Model<User, UserCreationAttrs> {
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
