@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, Get, Post, Query, UseInterceptors } from '@nestjs/common';
 import { Roles } from 'src/auth/decorators/roles.decorators';
 import { UserDto } from './dto/user.dto';
 import { Role } from './role/role.enum';
@@ -6,6 +6,7 @@ import { UserSearch } from './search/user.search';
 import { UserService } from './user.service';
 
 @Controller('users')
+@UseInterceptors(ClassSerializerInterceptor)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
