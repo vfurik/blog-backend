@@ -1,13 +1,18 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { compare } from 'bcrypt';
 import { User } from '../user/user.model';
 import { UserService } from '../user/user.service';
-import { USER_AUTH_ERROR } from './constants/auth.constant';
+import { ACTIVATION_EMAIL_ERROR, USER_AUTH_ERROR } from './constants/auth.constant';
 import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UserService, private readonly jwtService: JwtService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly jwtService: JwtService,
+    private readonly configService: ConfigService,
+  ) {}
 
   async validateUser(email: string, password: string) {
     const user = await this.userService.findByEmail(email);
@@ -28,5 +33,25 @@ export class AuthService {
     return {
       access_token: this.jwtService.sign(payload),
     };
+  }
+
+  async decodeToken(token: string) {
+    const payload = await this.jwtService.verify(token);
+    if (!payload.email) {
+      throw new BadRequestException(ACTIVATION_EMAIL_ERROR);
+    }
+
+    return payload.email;
+  }
+
+  activationUrl(email: string): URL {
+    const token = this.generateConfirmationToken({ email });
+    const url = new URL(`${this.configService.get('EMAIL_CONFIRMATION_URL')}/api/auth/confirm`);
+    url.searchParams.set('token', token);
+    return url;
+  }
+
+  private generateConfirmationToken(payload: { email: string }) {
+    return this.jwtService.sign(payload);
   }
 }

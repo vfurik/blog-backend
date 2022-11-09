@@ -11,6 +11,7 @@ import { APP_FILTER, APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { RolesGuard } from './auth/guards/roles.guard';
 import { SequelizeExceptionFilter } from './config/filters/sequelizeExceptions.filter';
+import { EmailModule } from './email/email.module';
 
 @Module({
   imports: [
@@ -19,10 +20,12 @@ import { SequelizeExceptionFilter } from './config/filters/sequelizeExceptions.f
       inject: [ConfigService],
       useFactory: getDbConfig,
     }),
+
     PostModule,
     UtilsModule.forRoot('test'),
     UserModule,
     AuthModule,
+    EmailModule,
   ],
   controllers: [],
   providers: [
@@ -36,7 +39,7 @@ import { SequelizeExceptionFilter } from './config/filters/sequelizeExceptions.f
     },
     {
       provide: APP_PIPE,
-      useFactory: () => new ValidationPipe({ whitelist: false }),
+      useFactory: () => new ValidationPipe({ whitelist: true }),
     },
     {
       provide: APP_FILTER,
