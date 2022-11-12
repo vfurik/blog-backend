@@ -3,15 +3,16 @@ import { InjectModel } from '@nestjs/sequelize';
 import { UserDto } from './dto/user.dto';
 import { User } from './user.model';
 import { genSalt, hash } from 'bcrypt';
-import { UserSearch } from './search/user.search';
+import { UserFilter } from './filters/user.filter';
 
 @Injectable()
 export class UserService {
   constructor(@InjectModel(User) private userRepository: typeof User) {}
 
-  async findAll(searchOption?: UserSearch) {
-    const options: any = { where: {}, include: { all: true }, attributes: { exclude: ['password'] } };
-    searchOption.email && (options.where.email = searchOption.email);
+  async findAll(filter?: UserFilter) {
+    const options: any = { where: {} };
+    filter.email && (options.where.email = filter.email);
+    filter.role && (options.where.role = filter.role);
 
     return this.userRepository.findAll(options);
   }

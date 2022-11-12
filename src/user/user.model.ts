@@ -1,4 +1,4 @@
-import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import { Column, CreatedAt, DataType, HasMany, Model, Table, UpdatedAt } from 'sequelize-typescript';
 import { Post } from '../post/post.model';
 import { Role } from './role/role.enum';
 import { Exclude, Expose } from 'class-transformer';
@@ -34,6 +34,14 @@ export class User extends Model<User, UserCreationAttrs> {
   @Expose()
   @Column({ type: DataType.ENUM, values: [Role.ADMIN, Role.USER], defaultValue: Role.USER })
   role: Role;
+
+  @CreatedAt
+  @Expose()
+  createdAt: Date;
+
+  @UpdatedAt
+  @Expose()
+  updatedAt: Date;
 
   @HasMany(() => Post)
   posts: Post[];

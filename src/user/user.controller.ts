@@ -2,7 +2,7 @@ import { Body, ClassSerializerInterceptor, Controller, Get, Post, Query, UseInte
 import { Roles } from 'src/auth/decorators/roles.decorators';
 import { UserDto } from './dto/user.dto';
 import { Role } from './role/role.enum';
-import { UserSearch } from './search/user.search';
+import { UserFilter } from './filters/user.filter';
 import { UserService } from './user.service';
 
 @Controller('users')
@@ -12,7 +12,7 @@ export class UserController {
 
   @Get()
   @Roles(Role.ADMIN)
-  public async findAll(@Query() query: UserSearch) {
+  public async findAll(@Query() query: UserFilter) {
     return this.userService.findAll(query);
   }
 

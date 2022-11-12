@@ -5,5 +5,5 @@ export class PostDto {
   readonly name: string;
   @IsNotEmpty()
   readonly title: string;
-  readonly authorId: number;
+  readonly authorId?: number;
 }
