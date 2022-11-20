@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { Op } from 'sequelize';
 import { PostDto } from './dto/post.dto';
 import { Post } from './post.model';
 
@@ -11,7 +12,19 @@ export class PostService {
     return this.postRepository.findAll();
   }
 
+  async findApproved(id: number) {
+    return this.postRepository.findAll({ where: { [Op.or]: [{ approved: true }, { authorId: id }] } });
+  }
+
+  async findMy(id: number) {
+    return this.postRepository.findAll({ where: { authorId: id } });
+  }
+
   async create(dto: PostDto) {
     return this.postRepository.create(dto);
+  }
+
+  async findById(id: number) {
+    return this.postRepository.findByPk(id);
   }
 }

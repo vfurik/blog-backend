@@ -22,6 +22,12 @@ export class Post extends Model<Post> {
   })
   title: string;
 
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+  })
+  approved: boolean;
+
   @ForeignKey(() => User)
   @Column({ type: DataType.INTEGER })
   authorId: number;

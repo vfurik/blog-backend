@@ -3,7 +3,7 @@ import { Module, ValidationPipe } from '@nestjs/common';
 import { PostModule } from './post/post.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { getDbConfig } from './config/database/database.providers';
+import { getDbConfig } from './config/database/database.provider';
 import { UtilsModule } from './utils/utils.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
@@ -12,6 +12,8 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { RolesGuard } from './auth/guards/roles.guard';
 import { SequelizeExceptionFilter } from './config/filters/sequelizeExceptions.filter';
 import { EmailModule } from './email/email.module';
+import { JobModule } from './job/job.module';
+import { ArbeitnowModule } from './arbeitnow/arbeitnow.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { EmailModule } from './email/email.module';
     UserModule,
     AuthModule,
     EmailModule,
+    JobModule,
+    ArbeitnowModule,
   ],
   controllers: [],
   providers: [
@@ -39,7 +43,7 @@ import { EmailModule } from './email/email.module';
     },
     {
       provide: APP_PIPE,
-      useFactory: () => new ValidationPipe({ whitelist: true }),
+      useFactory: () => new ValidationPipe({ whitelist: true, transform: true }),
     },
     {
       provide: APP_FILTER,
