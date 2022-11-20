@@ -1,0 +1,81 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/api/job-board-api"
+  },
+  "response": {
+    "jsonBody": {
+      "data": [
+        {
+          "slug": "financial-controller-eurofins-germany-umwelt-freiberg",
+          "company_name": "Eurofins Germany Umwelt",
+          "title": "Financial Controller (m/w/d)",
+          "description": "Company Description",
+          "remote": false,
+          "url": "https://www.arbeitnow.com/view/financial-controller-eurofins-germany-umwelt-freiberg-108732",
+          "tags": [
+            "Environmental services",
+            "finance"
+          ],
+          "job_types": [
+            "Associate",
+            "full time"
+          ],
+          "location": "Freiberg",
+          "created_at": 1668981122
+        },
+        {
+          "slug": "key-account-manager-in-national-hermann-ellermann-containersysteme-gmbh-ganderkesee",
+          "company_name": "Hermann Ellermann",
+          "title": "Key-Account-Manager/in",
+          "description": "Sie sprechen die Spracheche Ausbildung",
+          "remote": true,
+          "url": "https://www.arbeitnow.com/view/key-account-manager-in-national-hermann-ellermann-containersysteme-gmbh-ganderkesee-173426",
+          "tags": [
+            "Remote",
+            "Sales"
+          ],
+          "job_types": [],
+          "location": "Ganderkesee",
+          "created_at": 1668980945
+        },
+        {
+          "slug": "assistent-in-der-geschaftsleitung-in-bremen-genesede-gmbh",
+          "company_name": "genese.de GmbH",
+          "title": "Assistent/in der Geschäftsleitung in Bremen",
+          "description": "Glücklich und motiviert in eine neue Herausforderung in Bremen!",
+          "remote": false,
+          "url": "https://www.arbeitnow.com/view/assistent-in-der-geschaftsleitung-in-bremen-genesede-gmbh-160043",
+          "tags": [
+            "Sales"
+          ],
+          "job_types": [
+            "Vollzeit (unbefristet)",
+            "berufserfahren"
+          ],
+          "location": "Bremen",
+          "created_at": 1668980945
+        }
+      ],
+      "links": {
+        "first": "https://www.arbeitnow.com/api/job-board-api?page=1",
+        "last": null,
+        "prev": null,
+        "next": null
+      },
+      "meta": {
+        "current_page": 1,
+        "from": 1,
+        "path": "https://www.arbeitnow.com/api/job-board-api",
+        "per_page": 100,
+        "to": 100,
+        "terms": "This is a free public API for jobs, please do not abuse.",
+        "info": "Jobs are updated every hour and order by the `created_at` timestamp."
+      }
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "status": 200
+  }
+}

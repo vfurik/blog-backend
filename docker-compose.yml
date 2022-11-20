@@ -1,0 +1,45 @@
+version: '3.0'
+
+services:
+  blog-backend:
+    image: blog-backend:latest
+    container_name: blog-backend
+    ports:
+      - "3000:3000"
+    env_file:
+      - .integration.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: sh -c "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && npm run start:prod"
+  postgres:
+    image: postgres:14-alpine
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=testpasswordhere
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_DB=blog-backend
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  wiremock:
+    image: wiremock/wiremock:2.32.0
+    container_name: wiremock
+    command: >
+      --jetty-header-buffer-size 16384
+    ports: 
+      - "8080:8080"
+    volumes:
+      - $PWD/wiremock:/home/wiremock
+  inbucket:
+    image: inbucket/inbucket:3.0.4
+    container_name: inbucket
+    ports: 
+      - "9000:9000"
+      - "2500:2500"
+      - "1100:1100"

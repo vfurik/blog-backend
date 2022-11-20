@@ -14,7 +14,7 @@ import { User } from './user.model';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @ApiOperation({ summary: 'Find all users' })
+  @ApiOperation({ summary: 'Find all users', description: 'Role:[ADMIN]' })
   @ApiResponse({ status: 200, type: [User] })
   @Get()
   @Roles(Role.ADMIN)
@@ -22,7 +22,7 @@ export class UserController {
     return this.userService.findAll(query);
   }
 
-  @ApiOperation({ summary: 'Find all users' })
+  @ApiOperation({ summary: 'Find all users', description: 'Role:[ADMIN]' })
   @ApiResponse({ status: 201, type: User })
   @ApiBody({ type: UserDto })
   @Post()

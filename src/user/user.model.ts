@@ -2,7 +2,7 @@ import { Column, CreatedAt, DataType, HasMany, Model, Table, UpdatedAt } from 's
 import { Post } from '../post/post.model';
 import { Role } from './role/role.enum';
 import { Exclude, Expose } from 'class-transformer';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiHideProperty } from '@nestjs/swagger';
 
 interface UserCreationAttrs {
   email: string;
@@ -26,6 +26,7 @@ export class User extends Model<User, UserCreationAttrs> {
   @Column({ type: DataType.STRING, unique: true, allowNull: false })
   email: string;
 
+  @ApiHideProperty()
   @Column({ type: DataType.STRING, allowNull: false })
   @Exclude()
   password: string;

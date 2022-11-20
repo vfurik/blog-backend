@@ -5,4 +5,10 @@ module.exports = {
   test: {
     url: process.env.DATABASE_URL,
   },
+  integration: {
+    url: process.env.DATABASE_URL,
+  },
+  production: {
+    url: process.env.DATABASE_URL,
+  },
 };
