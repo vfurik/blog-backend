@@ -45,13 +45,13 @@ export class AuthService {
   }
 
   activationUrl(email: string): URL {
-    const token = this.generateConfirmationToken({ email });
-    const url = new URL(`${this.configService.get('EMAIL_CONFIRMATION_URL')}/api/auth/confirm`);
+    const token = this.generateVerificationToken({ email });
+    const url = new URL(`${this.configService.get('EMAIL_VERIFICATION_URL')}/api/auth/confirm`);
     url.searchParams.set('token', token);
     return url;
   }
 
-  private generateConfirmationToken(payload: { email: string }) {
+  private generateVerificationToken(payload: { email: string }) {
     return this.jwtService.sign(payload);
   }
 }

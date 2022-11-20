@@ -4,6 +4,7 @@ import { Op } from 'sequelize';
 import { JobDto } from './dto/job.dto';
 import { JobFilter } from './filters/job.filter';
 import { Job } from './job.model';
+import { JobResponse } from './response/jobs.response';
 
 @Injectable()
 export class JobService {
@@ -13,7 +14,7 @@ export class JobService {
     return this.jobRepository.bulkCreate(jobs);
   }
 
-  async getAll(filters: JobFilter) {
+  async getAll(filters: JobFilter): Promise<JobResponse> {
     const page = filters.page || 0;
     const limit = filters.limit || 20;
 

@@ -6,32 +6,47 @@ import { User } from 'src/user/user.model';
 import { POST_NOT_FOUND } from './constants/post.constant';
 import { PostDto } from './dto/post.dto';
 import { PostService } from './post.service';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags, ApiBody } from '@nestjs/swagger';
+import { Post as post } from './post.model';
 
+@ApiTags('posts')
+@ApiBearerAuth()
 @Controller('posts')
 export class PostController {
   constructor(private readonly postService: PostService) {}
 
+  @ApiOperation({ summary: 'Find all posts as admin' })
+  @ApiResponse({ status: 200, type: [post] })
   @Roles(Role.ADMIN)
   @Get('all')
   async findAll() {
     return this.postService.findAll();
   }
 
+  @ApiOperation({ summary: 'Find all posts as user' })
+  @ApiResponse({ status: 200, type: [post] })
   @Get()
   async findApproved(@GetUser() user: User) {
     return this.postService.findApproved(user.id);
   }
 
+  @ApiOperation({ summary: 'Find my posts' })
+  @ApiResponse({ status: 200, type: [post] })
   @Get('my')
   async findMy(@GetUser() user: User) {
     return this.postService.findMy(user.id);
   }
 
+  @ApiOperation({ summary: 'Create new post' })
+  @ApiResponse({ status: 201, type: post })
+  @ApiBody({ type: PostDto })
   @Post()
   async create(@Body() dto: PostDto, @GetUser() user: User) {
     return this.postService.create({ ...dto, authorId: user.id, approved: false });
   }
 
+  @ApiOperation({ summary: 'Approve post' })
+  @ApiResponse({ status: 200, type: post })
   @Roles(Role.ADMIN)
   @HttpCode(HttpStatus.OK)
   @Post('approve/:id')

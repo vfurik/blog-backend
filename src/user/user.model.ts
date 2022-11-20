@@ -2,6 +2,7 @@ import { Column, CreatedAt, DataType, HasMany, Model, Table, UpdatedAt } from 's
 import { Post } from '../post/post.model';
 import { Role } from './role/role.enum';
 import { Exclude, Expose } from 'class-transformer';
+import { ApiProperty } from '@nestjs/swagger';
 
 interface UserCreationAttrs {
   email: string;
@@ -11,6 +12,7 @@ interface UserCreationAttrs {
 @Exclude()
 @Table({ tableName: 'users' })
 export class User extends Model<User, UserCreationAttrs> {
+  @ApiProperty()
   @Expose()
   @Column({
     type: DataType.INTEGER,
@@ -19,6 +21,7 @@ export class User extends Model<User, UserCreationAttrs> {
   })
   id: number;
 
+  @ApiProperty()
   @Expose()
   @Column({ type: DataType.STRING, unique: true, allowNull: false })
   email: string;
@@ -27,18 +30,22 @@ export class User extends Model<User, UserCreationAttrs> {
   @Exclude()
   password: string;
 
+  @ApiProperty()
   @Expose()
   @Column({ type: DataType.BOOLEAN, defaultValue: false })
   active: boolean;
 
+  @ApiProperty()
   @Expose()
   @Column({ type: DataType.ENUM, values: [Role.ADMIN, Role.USER], defaultValue: Role.USER })
   role: Role;
 
+  @ApiProperty()
   @CreatedAt
   @Expose()
   createdAt: Date;
 
+  @ApiProperty()
   @UpdatedAt
   @Expose()
   updatedAt: Date;

@@ -17,9 +17,12 @@ import { UserService } from 'src/user/user.service';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { Public } from './decorators/public.decorator';
-
 import { EmailService } from 'src/email/email.service';
 import { ACTIVATION_EMAIL_ERROR } from './constants/auth.constant';
+import { ApiOperation, ApiResponse, ApiTags, ApiBody } from '@nestjs/swagger';
+import { User } from 'src/user/user.model';
+
+@ApiTags('auth')
 @Public()
 @Controller('auth')
 export class AuthController {
@@ -29,6 +32,9 @@ export class AuthController {
     private readonly emailService: EmailService,
   ) {}
 
+  @ApiOperation({ summary: 'Create new user' })
+  @ApiResponse({ status: 200, type: User })
+  @ApiBody({ type: UserDto })
   @UseInterceptors(ClassSerializerInterceptor)
   @Post('register')
   async register(@Body() userDto: UserDto) {
@@ -38,6 +44,9 @@ export class AuthController {
     return user;
   }
 
+  @ApiOperation({ summary: 'Login' })
+  @ApiResponse({ status: 200 })
+  @ApiBody({ type: UserDto })
   @UseGuards(LocalAuthGuard)
   @HttpCode(HttpStatus.OK)
   @Post('login')
@@ -45,10 +54,12 @@ export class AuthController {
     return this.authService.login(req.user);
   }
 
+  @ApiOperation({ summary: 'Verify email' })
+  @ApiResponse({ status: 200, type: User })
   @UseInterceptors(ClassSerializerInterceptor)
   @HttpCode(HttpStatus.OK)
-  @Get('confirm')
-  async confirmEmail(@Query('token') token: string) {
+  @Get('verify')
+  async verifyEmail(@Query('token') token: string) {
     if (!token) {
       throw new BadRequestException(ACTIVATION_EMAIL_ERROR);
     }
@@ -58,7 +69,7 @@ export class AuthController {
       throw new BadRequestException(ACTIVATION_EMAIL_ERROR);
     }
     user.active = true;
-    user.save();
-    return user;
+
+    return user.save();
   }
 }
