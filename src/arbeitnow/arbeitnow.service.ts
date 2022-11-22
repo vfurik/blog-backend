@@ -5,7 +5,7 @@ import { API_URL } from './constants/arbeitnow.constants';
 import { Data, JobsResponse } from './responces/jobs.response';
 import { lastValueFrom } from 'rxjs';
 import { AxiosError } from 'axios';
-import { JobDto } from 'src/job/dto/job.dto';
+import { JobDto } from '../job/dto/job.dto';
 
 @Injectable()
 export class ArbeitnowService {

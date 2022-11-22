@@ -2,7 +2,7 @@ import { ConfigService } from '@nestjs/config';
 import { SequelizeModuleOptions } from '@nestjs/sequelize';
 import { User } from '../../user/user.model';
 import { Post } from '../../post/post.model';
-import { Job } from 'src/job/job.model';
+import { Job } from '../../job/job.model';
 
 export const getDbConfig = async (configService: ConfigService): Promise<SequelizeModuleOptions> => {
   return {

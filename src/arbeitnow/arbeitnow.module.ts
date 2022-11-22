@@ -1,7 +1,7 @@
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { getHttpConfig } from 'src/config/http/http.provider';
+import { getHttpConfig } from '../config/http/http.provider';
 import { ArbeitnowService } from './arbeitnow.service';
 
 @Module({

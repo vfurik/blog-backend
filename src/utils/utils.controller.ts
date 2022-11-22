@@ -1,7 +1,7 @@
 import { Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
-import { Public } from 'src/auth/decorators/public.decorator';
 import { UtilsService } from './utils.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Public } from '../auth/decorators/public.decorator';
 
 @ApiTags('utils')
 @Public()

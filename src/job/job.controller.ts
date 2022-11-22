@@ -1,10 +1,10 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { ArbeitnowService } from 'src/arbeitnow/arbeitnow.service';
 import { JobFilter } from './filters/job.filter';
 import { JobService } from './job.service';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Job } from './job.model';
 import { JobResponse } from './response/jobs.response';
+import { ArbeitnowService } from '../arbeitnow/arbeitnow.service';
 
 @ApiTags('jobs')
 @ApiBearerAuth()

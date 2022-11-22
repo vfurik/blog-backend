@@ -1,5 +1,4 @@
-import { Global, Module } from '@nestjs/common';
-import { UserModule } from 'src/user/user.module';
+import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { LocalStrategy } from './strategies/local.strategy';
@@ -7,7 +6,8 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { JwtStrategy } from './strategies/jwt.strategy';
-import { EmailModule } from 'src/email/email.module';
+import { EmailModule } from '../email/email.module';
+import { UserModule } from '../user/user.module';
 
 @Module({
   controllers: [AuthController],

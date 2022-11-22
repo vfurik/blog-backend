@@ -12,15 +12,15 @@ import {
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
-import { UserDto } from 'src/user/dto/user.dto';
-import { UserService } from 'src/user/user.service';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { Public } from './decorators/public.decorator';
-import { EmailService } from 'src/email/email.service';
 import { ACTIVATION_EMAIL_ERROR } from './constants/auth.constant';
 import { ApiOperation, ApiResponse, ApiTags, ApiBody } from '@nestjs/swagger';
-import { User } from 'src/user/user.model';
+import { EmailService } from '../email/email.service';
+import { UserDto } from '../user/dto/user.dto';
+import { User } from '../user/user.model';
+import { UserService } from '../user/user.service';
 
 @ApiTags('auth')
 @Public()

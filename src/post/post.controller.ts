@@ -1,13 +1,14 @@
 import { BadRequestException, Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
-import { GetUser } from 'src/auth/decorators/get-user.decorator';
-import { Roles } from 'src/auth/decorators/roles.decorators';
-import { Role } from 'src/user/role/role.enum';
-import { User } from 'src/user/user.model';
+
 import { POST_NOT_FOUND } from './constants/post.constant';
 import { PostDto } from './dto/post.dto';
 import { PostService } from './post.service';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags, ApiBody } from '@nestjs/swagger';
 import { Post as post } from './post.model';
+import { GetUser } from '../auth/decorators/get-user.decorator';
+import { Roles } from '../auth/decorators/roles.decorators';
+import { Role } from '../user/role/role.enum';
+import { User } from '../user/user.model';
 
 @ApiTags('posts')
 @ApiBearerAuth()

@@ -1,11 +1,11 @@
 import { Body, ClassSerializerInterceptor, Controller, Get, Post, Query, UseInterceptors } from '@nestjs/common';
-import { Roles } from 'src/auth/decorators/roles.decorators';
 import { UserDto } from './dto/user.dto';
 import { Role } from './role/role.enum';
 import { UserFilter } from './filters/user.filter';
 import { UserService } from './user.service';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags, ApiBody } from '@nestjs/swagger';
 import { User } from './user.model';
+import { Roles } from '../auth/decorators/roles.decorators';
 
 @ApiTags('users')
 @ApiBearerAuth()
