@@ -32,7 +32,7 @@ export class AuthController {
     private readonly emailService: EmailService,
   ) {}
 
-  @ApiOperation({ summary: 'Create new user' })
+  @ApiOperation({ summary: 'Register user' })
   @ApiResponse({ status: 200, type: User })
   @ApiBody({ type: UserDto })
   @UseInterceptors(ClassSerializerInterceptor)

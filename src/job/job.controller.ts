@@ -13,13 +13,13 @@ export class JobController {
   constructor(private readonly jobService: JobService, private readonly arbeitnowService: ArbeitnowService) {}
 
   @ApiOperation({ summary: 'Find all jobs' })
-  @ApiResponse({ status: 200, type: [JobResponse] })
+  @ApiResponse({ status: 200, type: [Job] })
   @Get()
   async getAll(@Query() jobFilter: JobFilter) {
     return this.jobService.getAll(jobFilter);
   }
 
-  @ApiOperation({ summary: 'Refresh locations' })
+  @ApiOperation({ summary: 'Refresh jobs' })
   @ApiResponse({ status: 200, type: [Job] })
   @Get('refresh')
   async refresh() {

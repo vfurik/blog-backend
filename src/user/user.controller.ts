@@ -22,7 +22,7 @@ export class UserController {
     return this.userService.findAll(query);
   }
 
-  @ApiOperation({ summary: 'Find all users', description: 'Role:[ADMIN]' })
+  @ApiOperation({ summary: 'Create new user', description: 'Role:[ADMIN]' })
   @ApiResponse({ status: 201, type: User })
   @ApiBody({ type: UserDto })
   @Post()
