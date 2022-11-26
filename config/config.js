@@ -4,7 +4,6 @@ module.exports = {
   },
   test: {
     url: process.env.DATABASE_URL,
-    dialect: 'postgres',
   },
   integration: {
     url: process.env.DATABASE_URL,

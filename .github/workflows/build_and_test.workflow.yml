@@ -9,6 +9,7 @@ jobs:
     container: node:18.12.1-alpine
     env:
       NODE_ENV: test
+      DATABASE_URL: postgres://postgres@postgres/blog-backend
     
     services:
       postgres:
