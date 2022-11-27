@@ -1,0 +1,24 @@
+name: build and push image
+
+on:
+  push:
+    branches:
+      - 'master'
+      - 'add_github_actions'
+
+jobs:
+  docker:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/blog-backend:latest
