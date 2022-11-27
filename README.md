@@ -37,6 +37,6 @@ $ npm run test:e2e
 ## Swagger
 
 ```
-    http://localhost:3000/api
-    Postman collection included
+http://localhost:3000/api
+Postman collection included
 ```
