@@ -1,0 +1,33 @@
+name: build and test
+
+on:
+  push
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-20.04
+    container: node:18.12.1-alpine
+    env:
+      NODE_ENV: test
+      DATABASE_URL: postgres://postgres@postgres/blog-backend
+    
+    services:
+      postgres:
+        image: postgres:14-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_DB: blog-backend
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm install
+      - run: npm run lint
+      - run: npm run build
+      - run: npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && npm run test:e2e
