@@ -1,0 +1,526 @@
+{
+	"info": {
+		"_postman_id": "6f487b33-14e4-46bf-863d-89841cff6c0b",
+		"name": "postman_demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "wiremock",
+			"item": [
+				{
+					"name": "general",
+					"item": [
+						{
+							"name": "GET ALL REQUESTS",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{wiremockUrl}}/__admin/requests",
+									"host": [
+										"{{wiremockUrl}}"
+									],
+									"path": [
+										"__admin",
+										"requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET MAPPING",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{wiremockUrl}}/__admin/mappings",
+									"host": [
+										"{{wiremockUrl}}"
+									],
+									"path": [
+										"__admin",
+										"mappings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CLEAN REQUESTS",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{wiremockUrl}}/__admin/requests",
+									"host": [
+										"{{wiremockUrl}}"
+									],
+									"path": [
+										"__admin",
+										"requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CLEAN MAPPING",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{wiremockUrl}}/__admin/mappings",
+									"host": [
+										"{{wiremockUrl}}"
+									],
+									"path": [
+										"__admin",
+										"mappings"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "backend",
+					"item": [
+						{
+							"name": "MOCK JOBS(V1)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"url\": \"/api/job-board-api\"\n  },\n  \"response\": {\n    \"jsonBody\": {\n      \"data\": [\n        {\n          \"slug\": \"financial-controller-eurofins-germany-umwelt-freiberg\",\n          \"company_name\": \"Eurofins Germany Umwelt\",\n          \"title\": \"Financial Controller (m/w/d)\",\n          \"description\": \"Company Description\",\n          \"remote\": false,\n          \"url\": \"https://www.arbeitnow.com/view/financial-controller-eurofins-germany-umwelt-freiberg-108732\",\n          \"tags\": [\n            \"Environmental services\",\n            \"finance\"\n          ],\n          \"job_types\": [\n            \"Associate\",\n            \"full time\"\n          ],\n          \"location\": \"Freiberg\",\n          \"created_at\": 1668981122\n        },\n        {\n          \"slug\": \"key-account-manager-in-national-hermann-ellermann-containersysteme-gmbh-ganderkesee\",\n          \"company_name\": \"Hermann Ellermann\",\n          \"title\": \"Key-Account-Manager/in\",\n          \"description\": \"Sie sprechen die Spracheche Ausbildung\",\n          \"remote\": true,\n          \"url\": \"https://www.arbeitnow.com/view/key-account-manager-in-national-hermann-ellermann-containersysteme-gmbh-ganderkesee-173426\",\n          \"tags\": [\n            \"Remote\",\n            \"Sales\"\n          ],\n          \"job_types\": [],\n          \"location\": \"Ganderkesee\",\n          \"created_at\": 1668980945\n        },\n        {\n          \"slug\": \"assistent-in-der-geschaftsleitung-in-bremen-genesede-gmbh\",\n          \"company_name\": \"genese.de GmbH\",\n          \"title\": \"Assistent/in der Geschäftsleitung in Bremen\",\n          \"description\": \"Glücklich und motiviert in eine neue Herausforderung in Bremen!\",\n          \"remote\": false,\n          \"url\": \"https://www.arbeitnow.com/view/assistent-in-der-geschaftsleitung-in-bremen-genesede-gmbh-160043\",\n          \"tags\": [\n            \"Sales\"\n          ],\n          \"job_types\": [\n            \"Vollzeit (unbefristet)\",\n            \"berufserfahren\"\n          ],\n          \"location\": \"Bremen\",\n          \"created_at\": 1668980945\n        }\n      ],\n      \"links\": {\n        \"first\": \"https://www.arbeitnow.com/api/job-board-api?page=1\",\n        \"last\": null,\n        \"prev\": null,\n        \"next\": null\n      },\n      \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"path\": \"https://www.arbeitnow.com/api/job-board-api\",\n        \"per_page\": 100,\n        \"to\": 100,\n        \"terms\": \"This is a free public API for jobs, please do not abuse.\",\n        \"info\": \"Jobs are updated every hour and order by the `created_at` timestamp.\"\n      }\n    },\n    \"headers\": {\n      \"Content-Type\": \"application/json\"\n    },\n    \"status\": 200\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{wiremockUrl}}/__admin/mappings",
+									"host": [
+										"{{wiremockUrl}}"
+									],
+									"path": [
+										"__admin",
+										"mappings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "MOCK JOBS(V2)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"request\": {\n        \"method\": \"GET\",\n        \"url\": \"/api/job-board-api\"\n    },\n    \"response\": {\n        \"jsonBody\": {\n            \"data\": [\n                {\n                    \"slug\": \"financial-controller\",\n                    \"company_name\": \"Eurofins Germany Umwelt\",\n                    \"title\": \"Financial Controller (m/w)\",\n                    \"description\": \"Company Description\",\n                    \"remote\": false,\n                    \"url\": \"https://www.arbeitnow.com/view/financial-controller-eurofins-germany-umwelt-freiberg-108767\",\n                    \"tags\": [\n                        \"Environmental services\",\n                        \"finance\"\n                    ],\n                    \"job_types\": [\n                        \"Associate\"\n                    ],\n                    \"location\": \"Freiberg\",\n                    \"created_at\": 1668981900\n                },\n                {\n                    \"slug\": \"financial-controller-eurofins-germany-umwelt-freiberg\",\n                    \"company_name\": \"Eurofins Germany Umwelt\",\n                    \"title\": \"Financial Controller (m/w/d)\",\n                    \"description\": \"Company Description\",\n                    \"remote\": false,\n                    \"url\": \"https://www.arbeitnow.com/view/financial-controller-eurofins-germany-umwelt-freiberg-108732\",\n                    \"tags\": [\n                        \"Environmental services\",\n                        \"finance\"\n                    ],\n                    \"job_types\": [\n                        \"Associate\",\n                        \"full time\"\n                    ],\n                    \"location\": \"Freiberg\",\n                    \"created_at\": 1668981122\n                },\n                {\n                    \"slug\": \"key-account-manager-in-national-hermann-ellermann-containersysteme-gmbh-ganderkesee\",\n                    \"company_name\": \"Hermann Ellermann\",\n                    \"title\": \"Key-Account-Manager/in\",\n                    \"description\": \"Sie sprechen die Spracheche Ausbildung\",\n                    \"remote\": true,\n                    \"url\": \"https://www.arbeitnow.com/view/key-account-manager-in-national-hermann-ellermann-containersysteme-gmbh-ganderkesee-173426\",\n                    \"tags\": [\n                        \"Remote\",\n                        \"Sales\"\n                    ],\n                    \"job_types\": [],\n                    \"location\": \"Ganderkesee\",\n                    \"created_at\": 1668980945\n                },\n                {\n                    \"slug\": \"assistent-in-der-geschaftsleitung-in-bremen-genesede-gmbh\",\n                    \"company_name\": \"genese.de GmbH\",\n                    \"title\": \"Assistent/in der Geschäftsleitung in Bremen\",\n                    \"description\": \"Glücklich und motiviert in eine neue Herausforderung in Bremen!\",\n                    \"remote\": false,\n                    \"url\": \"https://www.arbeitnow.com/view/assistent-in-der-geschaftsleitung-in-bremen-genesede-gmbh-160043\",\n                    \"tags\": [\n                        \"Sales\"\n                    ],\n                    \"job_types\": [\n                        \"Vollzeit (unbefristet)\",\n                        \"berufserfahren\"\n                    ],\n                    \"location\": \"Bremen\",\n                    \"created_at\": 1668980945\n                }\n            ],\n            \"links\": {\n                \"first\": \"https://www.arbeitnow.com/api/job-board-api?page=1\",\n                \"last\": null,\n                \"prev\": null,\n                \"next\": null\n            },\n            \"meta\": {\n                \"current_page\": 1,\n                \"from\": 1,\n                \"path\": \"https://www.arbeitnow.com/api/job-board-api\",\n                \"per_page\": 100,\n                \"to\": 100,\n                \"terms\": \"This is a free public API for jobs, please do not abuse.\",\n                \"info\": \"Jobs are updated every hour and order by the `created_at` timestamp.\"\n            }\n        },\n        \"headers\": {\n            \"Content-Type\": \"application/json\"\n        },\n        \"status\": 200\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{wiremockUrl}}/__admin/mappings",
+									"host": [
+										"{{wiremockUrl}}"
+									],
+									"path": [
+										"__admin",
+										"mappings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR WITH DELAY",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"request\": {\n        \"method\": \"GET\",\n        \"url\": \"/api/job-board-api\"\n    },\n    \"response\": {\n        \"fixedDelayMilliseconds\": 15000,\n        \"status\": 500\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{wiremockUrl}}/__admin/mappings",
+									"host": [
+										"{{wiremockUrl}}"
+									],
+									"path": [
+										"__admin",
+										"mappings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TEST JOBS ENDPOINT",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{wiremockUrl}}/api/job-board-api",
+									"host": [
+										"{{wiremockUrl}}"
+									],
+									"path": [
+										"api",
+										"job-board-api"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "backend",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "LOGIN",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let response = pm.response.json();",
+											"",
+											"pm.collectionVariables.set(\"token\", response.access_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"admin@admin.com\",\n    \"password\": \"admin\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{backendUrl}}/api/auth/login",
+									"host": [
+										"{{backendUrl}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "REGISTRATION",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"{{registrationEmail}}\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{backendUrl}}/api/auth/register",
+									"host": [
+										"{{backendUrl}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "jobs",
+					"item": [
+						{
+							"name": "REFRESH",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"title\",\n    \"remote\": false,\n    \"location\": \"location\",\n    \"tags\": [\"tag1\", \"tag2\"],\n    \"jobTypes\": [\"type_1\"],\n    \"createdAt\": 1668160327\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{backendUrl}}/api/jobs/refresh",
+									"host": [
+										"{{backendUrl}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										"refresh"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET JOBS",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{backendUrl}}/api/jobs?title=Financial",
+									"host": [
+										"{{backendUrl}}"
+									],
+									"path": [
+										"api",
+										"jobs"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "Financial"
+										},
+										{
+											"key": "remote",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "0",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "500",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "inbucket",
+			"item": [
+				{
+					"name": "LIST MAILBOX",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();",
+									"",
+									"pm.collectionVariables.set(\"mailId\", response[0].id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{inbucketUrl}}/api/v1/mailbox/{{mailbox}}",
+							"host": [
+								"{{inbucketUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"mailbox",
+								"{{mailbox}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MAIL BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{inbucketUrl}}/api/v1/mailbox/{{mailbox}}/{{mailId}}",
+							"host": [
+								"{{inbucketUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"mailbox",
+								"{{mailbox}}",
+								"{{mailId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE MAIL",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{inbucketUrl}}/api/v1/mailbox/{{mailbox}}/{{mailId}}",
+							"host": [
+								"{{inbucketUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"mailbox",
+								"{{mailbox}}",
+								"{{mailId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "arbeitnow",
+			"item": [
+				{
+					"name": "JOBS: external api",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{arbeitnow}}/api/job-board-api",
+							"host": [
+								"{{arbeitnow}}"
+							],
+							"path": [
+								"api",
+								"job-board-api"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "wiremockUrl",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "backendUrl",
+			"value": "http://localhost:3000"
+		},
+		{
+			"key": "inbucketUrl",
+			"value": "http://localhost:9000"
+		},
+		{
+			"key": "arbeitnow",
+			"value": "https://arbeitnow.com"
+		},
+		{
+			"key": "registrationEmail",
+			"value": "test@test.com"
+		},
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "mailbox",
+			"value": "test"
+		},
+		{
+			"key": "mailId",
+			"value": ""
+		}
+	]
+}

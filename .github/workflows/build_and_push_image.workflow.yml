@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - 'master'
-      - 'add_github_actions'
 
 jobs:
   build_and_push:
