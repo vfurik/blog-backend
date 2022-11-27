@@ -7,7 +7,7 @@ on:
       - 'add_github_actions'
 
 jobs:
-  docker:
+  build_and_push:
     runs-on: ubuntu-20.04
 
     steps:
