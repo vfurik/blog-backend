@@ -8,4 +8,4 @@ updates:
     pull-request-branch-name:
       separator: "-"
     target-branch: dependency-updates
-    
+   
