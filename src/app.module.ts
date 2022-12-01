@@ -4,7 +4,6 @@ import { PostModule } from './post/post.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { getDbConfig } from './config/database/database.provider';
-import { UtilsModule } from './utils/utils.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_FILTER, APP_GUARD, APP_PIPE } from '@nestjs/core';
@@ -24,7 +23,6 @@ import { ArbeitnowModule } from './arbeitnow/arbeitnow.module';
     }),
 
     PostModule,
-    UtilsModule.forRoot('test'),
     UserModule,
     AuthModule,
     EmailModule,

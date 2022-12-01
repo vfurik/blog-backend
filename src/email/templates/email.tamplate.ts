@@ -1,7 +1,7 @@
 import { ISendMailOptions } from '@nestjs-modules/mailer';
 import { EMAIL_FROM, ACTIVATION_SUBJECT } from '../constants/email.constants';
 
-const activationText = (url: string): string => `To confirm the email address, click here: ${url}`;
+const activationText = (url: string): string => `To verify the email address, click here: ${url}`;
 
 export const EMAIL_ACTIVATION = (email: string, url: string): ISendMailOptions => {
   return {

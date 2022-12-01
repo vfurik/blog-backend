@@ -14,7 +14,7 @@ import { Roles } from '../auth/decorators/roles.decorators';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @ApiOperation({ summary: 'Find all users', description: 'Role:[ADMIN]' })
+  @ApiOperation({ summary: 'Find all users', description: 'Role: [ADMIN]' })
   @ApiResponse({ status: 200, type: [User] })
   @Get()
   @Roles(Role.ADMIN)
@@ -22,12 +22,14 @@ export class UserController {
     return this.userService.findAll(query);
   }
 
-  @ApiOperation({ summary: 'Create new user', description: 'Role:[ADMIN]' })
+  @ApiOperation({ summary: 'Create new user', description: 'Role: [ADMIN]' })
   @ApiResponse({ status: 201, type: User })
   @ApiBody({ type: UserDto })
   @Post()
   @Roles(Role.ADMIN)
   public async createUser(@Body() dto: UserDto) {
-    return this.userService.createUser(dto);
+    const user = await this.userService.createUser(dto);
+    user.active = true;
+    return user.save();
   }
 }
