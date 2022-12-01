@@ -8,7 +8,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { EmailModule } from '../email/email.module';
 import { UserModule } from '../user/user.module';
-import { getJwtConfig } from 'src/config/jwt/jwt.provider';
+import { getJwtConfig } from '../config/jwt/jwt.provider';
 
 @Module({
   controllers: [AuthController],
