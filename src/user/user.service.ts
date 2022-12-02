@@ -25,6 +25,11 @@ export class UserService {
     return user.save();
   }
 
+  async activateUser(user: User) {
+    user.active = true;
+    return user.save();
+  }
+
   async findByEmail(email: string) {
     return this.userRepository.findOne({ where: { email } });
   }

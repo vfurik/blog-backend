@@ -29,7 +29,6 @@ export class UserController {
   @Roles(Role.ADMIN)
   public async createUser(@Body() dto: UserDto) {
     const user = await this.userService.createUser(dto);
-    user.active = true;
-    return user.save();
+    return this.userService.activateUser(user);
   }
 }
