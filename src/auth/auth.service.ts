@@ -46,7 +46,7 @@ export class AuthService {
 
   activationUrl(email: string): URL {
     const token = this.generateVerificationToken({ email });
-    const url = new URL(`${this.configService.get('EMAIL_VERIFICATION_URL')}/api/auth/confirm`);
+    const url = new URL(`${this.configService.get('EMAIL_VERIFICATION_URL')}/api/auth/verify`);
     url.searchParams.set('token', token);
     return url;
   }

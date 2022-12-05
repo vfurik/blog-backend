@@ -19,7 +19,7 @@ export class JobService {
     const limit = filters.limit || 20;
 
     const where: any = {};
-    typeof filters.remote == 'boolean' && (where.remote = filters.remote);
+    filters.remote == 'boolean' && (where.remote = filters.remote);
     filters.title && (where.title = { [Op.iLike]: `%${filters.title}%` });
 
     const resp = await this.jobRepository.findAndCountAll({

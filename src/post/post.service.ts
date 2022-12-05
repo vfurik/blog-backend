@@ -20,8 +20,8 @@ export class PostService {
     return this.postRepository.findAll({ where: { authorId: id } });
   }
 
-  async create(dto: PostDto) {
-    return this.postRepository.create(dto);
+  async create(dto: PostDto, authorId: number) {
+    return this.postRepository.create({ ...dto, authorId });
   }
 
   async findById(id: number) {

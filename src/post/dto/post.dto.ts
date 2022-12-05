@@ -8,6 +8,4 @@ export class PostDto {
   @ApiProperty()
   @IsNotEmpty()
   readonly title: string;
-  readonly authorId: number;
-  readonly approved: boolean;
 }

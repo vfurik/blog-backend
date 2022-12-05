@@ -43,10 +43,10 @@ export class PostController {
   @ApiBody({ type: PostDto })
   @Post()
   async create(@Body() dto: PostDto, @GetUser() user: User) {
-    return this.postService.create({ ...dto, authorId: user.id, approved: false });
+    return this.postService.create(dto, user.id);
   }
 
-  @ApiOperation({ summary: 'Approve post', description: 'Role:[ADMIN]' })
+  @ApiOperation({ summary: 'Approve post', description: 'Role: [ADMIN]' })
   @ApiResponse({ status: 200, type: post })
   @Roles(Role.ADMIN)
   @HttpCode(HttpStatus.OK)

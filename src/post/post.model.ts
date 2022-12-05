@@ -2,8 +2,15 @@ import { Model, Table, Column, DataType, ForeignKey, BelongsTo, CreatedAt, Updat
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from '../user/user.model';
 
+interface PostCreationAttrs {
+  name: string;
+  title: string;
+  authorId: number;
+  approved: boolean;
+}
+
 @Table({ tableName: 'posts' })
-export class Post extends Model<Post> {
+export class Post extends Model<Post, PostCreationAttrs> {
   @ApiProperty()
   @Column({
     type: DataType.INTEGER,
@@ -29,7 +36,7 @@ export class Post extends Model<Post> {
   @ApiProperty()
   @Column({
     type: DataType.BOOLEAN,
-    allowNull: false,
+    defaultValue: false,
   })
   approved: boolean;
 
