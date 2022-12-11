@@ -51,6 +51,16 @@ export class User extends Model<User, UserCreationAttrs> {
   @Expose()
   updatedAt: Date;
 
+  @ApiHideProperty()
+  @Column({ type: DataType.BOOLEAN, allowNull: false, defaultValue: false })
+  @Exclude()
+  twofaEnabled: boolean;
+
+  @ApiHideProperty()
+  @Column({ type: DataType.STRING })
+  @Exclude()
+  twofaSecret: string;
+
   @HasMany(() => Post)
   posts: Post[];
 }

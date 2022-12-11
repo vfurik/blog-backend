@@ -1,4 +1,13 @@
-import { Body, ClassSerializerInterceptor, Controller, Get, Post, Query, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  ClassSerializerInterceptor,
+  Controller,
+  Get,
+  Post,
+  Query,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { UserDto } from './dto/user.dto';
 import { Role } from './role/role.enum';
 import { UserFilter } from './filters/user.filter';
@@ -6,10 +15,13 @@ import { UserService } from './user.service';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags, ApiBody } from '@nestjs/swagger';
 import { User } from './user.model';
 import { Roles } from '../auth/decorators/roles.decorators';
+import { JwtTwoFaGuard } from '../auth/guards/jwt-two-fa.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
 
 @ApiTags('users')
 @ApiBearerAuth()
 @Controller('users')
+@UseGuards(JwtTwoFaGuard, RolesGuard)
 @UseInterceptors(ClassSerializerInterceptor)
 export class UserController {
   constructor(private readonly userService: UserService) {}

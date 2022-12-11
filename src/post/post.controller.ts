@@ -1,4 +1,14 @@
-import { BadRequestException, Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 
 import { POST_NOT_FOUND } from './constants/post.constant';
 import { PostDto } from './dto/post.dto';
@@ -9,9 +19,12 @@ import { GetUser } from '../auth/decorators/get-user.decorator';
 import { Roles } from '../auth/decorators/roles.decorators';
 import { Role } from '../user/role/role.enum';
 import { User } from '../user/user.model';
+import { JwtTwoFaGuard } from '../auth/guards/jwt-two-fa.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
 
 @ApiTags('posts')
 @ApiBearerAuth()
+@UseGuards(JwtTwoFaGuard, RolesGuard)
 @Controller('posts')
 export class PostController {
   constructor(private readonly postService: PostService) {}

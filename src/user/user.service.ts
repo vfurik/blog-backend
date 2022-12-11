@@ -17,6 +17,10 @@ export class UserService {
     return this.userRepository.findAll(options);
   }
 
+  async findByPk(id: number) {
+    return this.userRepository.findByPk(id);
+  }
+
   async createUser(dto: UserDto) {
     const salt = await genSalt(7);
     const hashPasswod = await hash(dto.password, salt);
@@ -32,5 +36,15 @@ export class UserService {
 
   async findByEmail(email: string) {
     return this.userRepository.findOne({ where: { email } });
+  }
+
+  async setTwoFaSecret(secret: string, user: User) {
+    user.twofaSecret = secret;
+    return user.save();
+  }
+
+  async activateTwoFa(user: User) {
+    user.twofaEnabled = true;
+    return user.save();
   }
 }
