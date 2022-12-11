@@ -13,6 +13,7 @@ import { SequelizeExceptionFilter } from './config/filters/sequelizeExceptions.f
 import { EmailModule } from './email/email.module';
 import { JobModule } from './job/job.module';
 import { ArbeitnowModule } from './arbeitnow/arbeitnow.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { ArbeitnowModule } from './arbeitnow/arbeitnow.module';
       inject: [ConfigService],
       useFactory: getDbConfig,
     }),
+    ScheduleModule.forRoot(),
 
     PostModule,
     UserModule,
