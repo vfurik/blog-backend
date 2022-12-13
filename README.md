@@ -17,14 +17,16 @@ $ npm install
 ## Running the app
 
 ```bash
-# migrations and seeds
+# docker-compose(see env_file)
+$ docker-compose up -d
+
+# For local development: migrations and seeds
 $ npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all
 
-# development
+# run app
 $ npm run start:dev
 
-# production mode
-$ docker-compose up -d
+
 ```
 
 ## Test
@@ -39,4 +41,9 @@ $ npm run test:e2e
 ```
 http://localhost:3000/api
 Postman collection included
+```
+## Inbucket
+
+```
+http://localhost:9000/monitor
 ```
