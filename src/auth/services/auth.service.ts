@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { compare } from 'bcrypt';
-import { User } from '../user/user.model';
-import { UserService } from '../user/user.service';
-import { ACTIVATION_EMAIL_ERROR, USER_AUTH_ERROR } from './constants/auth.constant';
+import { User } from '../../user/user.model';
+import { UserService } from '../../user/user.service';
+import { ACTIVATION_EMAIL_ERROR, USER_AUTH_ERROR } from '../constants/auth.constant';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 
@@ -24,11 +24,11 @@ export class AuthService {
       throw new UnauthorizedException(USER_AUTH_ERROR);
     }
 
-    return { email: user.email, role: user.role, id: user.id };
+    return { email: user.email, role: user.role, id: user.id, twofaEnabled: user.twofaEnabled };
   }
 
   async login(user: User) {
-    const payload = { email: user.email, role: user.role, id: user.id };
+    const payload = { email: user.email, role: user.role, id: user.id, twofaEnabled: user.twofaEnabled };
 
     return {
       access_token: this.jwtService.sign(payload),

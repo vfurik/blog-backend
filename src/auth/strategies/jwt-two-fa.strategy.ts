@@ -5,7 +5,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { UserService } from '../../user/user.service';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class JwtTwoFaStrategy extends PassportStrategy(Strategy, 'jwt-two-fa') {
   constructor(private configService: ConfigService, private userService: UserService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -15,6 +15,12 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any) {
-    return this.userService.findByPk(payload.id);
+    const user = await this.userService.findByPk(payload.id);
+    if (!user.twofaEnabled) {
+      return user;
+    }
+    if (payload.isTwoFaAuthenticated) {
+      return user;
+    }
   }
 }

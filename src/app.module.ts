@@ -6,9 +6,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { getDbConfig } from './config/database/database.provider';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
-import { APP_FILTER, APP_GUARD, APP_PIPE } from '@nestjs/core';
-import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
-import { RolesGuard } from './auth/guards/roles.guard';
+import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { SequelizeExceptionFilter } from './config/filters/sequelizeExceptions.filter';
 import { EmailModule } from './email/email.module';
 import { JobModule } from './job/job.module';
@@ -31,14 +29,6 @@ import { ArbeitnowModule } from './arbeitnow/arbeitnow.module';
   ],
   controllers: [],
   providers: [
-    {
-      provide: APP_GUARD,
-      useClass: JwtAuthGuard,
-    },
-    {
-      provide: APP_GUARD,
-      useClass: RolesGuard,
-    },
     {
       provide: APP_PIPE,
       useFactory: () => new ValidationPipe({ whitelist: true, transform: true }),

@@ -36,16 +36,18 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "nodemailer": "^6.8.0",
+    "otplib": "^12.0.1",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "pg": "^8.8.0",
+    "qrcode": "^1.5.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "sequelize": "^6.25.3",
-    "sequelize-typescript": "^2.1.5",
-    "sequelize-cli": "^6.5.2"
+    "sequelize-cli": "^6.5.2",
+    "sequelize-typescript": "^2.1.5"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
